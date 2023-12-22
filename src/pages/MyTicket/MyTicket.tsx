@@ -1,7 +1,16 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./myticket.css"
 
-const tableContents = [
+type TOC = {
+    no: number,
+    sub: string,
+    status: JSX.Element,
+    support: string
+    date: string
+    rate: JSX.Element
+}[]
+
+const tableContents: TOC = [
     {
         no: 1234,
         sub: "Login issue",
@@ -69,10 +78,311 @@ const tableContents = [
             <img src="/star.png" alt="" />
         </div>
     },
+
+    {
+        no: 14234,
+        sub: "Login issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech support",
+        date: "13/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starhalf.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1124,
+        sub: "New ticket issue",
+        status: <div className=" bg-[#05386B] text-center">
+            On Hold
+        </div>,
+        support: "Operation Team",
+        date: "14/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1244,
+        sub: "Ticket submission",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Operation Team",
+        date: "14/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1114,
+        sub: "Login Issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech Support",
+        date: "3/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 14234,
+        sub: "Login issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech support",
+        date: "13/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starhalf.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1124,
+        sub: "New ticket issue",
+        status: <div className=" bg-[#05386B] text-center">
+            On Hold
+        </div>,
+        support: "Operation Team",
+        date: "14/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1244,
+        sub: "Ticket submission",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Operation Team",
+        date: "14/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1114,
+        sub: "Login Issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech Support",
+        date: "3/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+
+    {
+        no: 14234,
+        sub: "Login issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech support",
+        date: "13/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starhalf.png" alt="" />
+        </div>
+    },
+
+
+    {
+        no: 1124,
+        sub: "New ticket issue",
+        status: <div className=" bg-[#05386B] text-center">
+            On Hold
+        </div>,
+        support: "Operation Team",
+        date: "14/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1244,
+        sub: "Ticket submission",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Operation Team",
+        date: "14/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1114,
+        sub: "Login Issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech Support",
+        date: "3/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+    {
+        no: 14234,
+        sub: "Login issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech support",
+        date: "13/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starhalf.png" alt="" />
+        </div>
+    },
+
+
+    {
+        no: 14234,
+        sub: "Login issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech support",
+        date: "13/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starfull.png" alt="" />
+            <img src="/starhalf.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1124,
+        sub: "New ticket issue",
+        status: <div className=" bg-[#05386B] text-center">
+            On Hold
+        </div>,
+        support: "Operation Team",
+        date: "14/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1244,
+        sub: "Ticket submission",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Operation Team",
+        date: "14/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
+
+    {
+        no: 1114,
+        sub: "Login Issue",
+        status: <div className=" bg-[#5CDB95] text-center">
+            In Progress
+        </div>,
+        support: "Tech Support",
+        date: "3/08/21",
+        rate: <div className="flex gap-1">
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+            <img src="/star.png" alt="" />
+        </div>
+    },
 ]
 
 export const MyTicket = () => {
     const [isOpen, setIsOpen] = useState(false)
+    const [perPage, setPerPage] = useState<number>(5)
+    const [pageNumber, setPageNumber] = useState<number>(0)
+    const [tablePerPageContent, setTablePerPageContent] = useState<TOC | null>(null)
+
+    useEffect(() => {
+        const copyOfTableOfContents = tableContents 
+setTablePerPageContent(copyOfTableOfContents.slice(pageNumber * perPage, pageNumber * perPage + perPage))
+    }, [perPage, pageNumber])
+
+    // console.log(tablePerPageContent)
 
     const handleCloseModal = (e: React.MouseEvent<HTMLDivElement>) => {
         if (e.currentTarget == e.target) {
@@ -149,7 +459,7 @@ export const MyTicket = () => {
 
                     <div className="flex items-center">
                         Show:&nbsp;
-                        <input type="number" value={10} className='w-12 p-1 outline-none bg-[#C4C4C4A1]' />
+                        <input type="number" value={perPage} className='w-12 p-1 outline-none bg-[#C4C4C4A1]' onChange={(e) => setPerPage(parseInt(e.target.value) ? parseInt(e.target.value) : 0)} />
                         &nbsp;Entres
                     </div>
 
@@ -163,8 +473,8 @@ export const MyTicket = () => {
                             <th>Rate</th>
                         </tr>
                         {
-                            tableContents.map((data) => (
-                                <tr key={data.no}>
+                            tablePerPageContent?.map((data, index) => (
+                                <tr key={index}>
                                     <div className=" text-blue-600 underline cursor-pointer text-center" onClick={() => setIsOpen(true)}>
                                         {data.no}
                                     </div>
@@ -182,23 +492,39 @@ export const MyTicket = () => {
 
                     <div className="flex justify-between">
                         <div className="">
-                            Showing 1 to 5 of 5 entries
+                            Showing {pageNumber * perPage} to {pageNumber * perPage + perPage} of {tableContents.length} entries
                         </div>
                         <div className="flex gap-2">
-                            <button>
+                            <button onClick={() => setPageNumber(0)}>
                                 <img src="/first.png" alt="" />
                             </button>
 
-                            <button>
+                            <button onClick={() => setPageNumber(prev => {
+                                if (prev > 0) {
+                                    return prev = prev - 1
+                                }
+                                return prev
+                            })}>
                                 <img src="/prev.png" alt="" />
                             </button>
 
-                            1
+                            {pageNumber + 1}
 
-                            <button>
+                            <button onClick={() => setPageNumber(prev => {
+                                // if (prev > 0) {
+                                //     return prev = prev - 1
+                                // }
+                                return prev + 1
+                            })}>
                                 <img src="/next.png" alt="" />
                             </button>
-                            <button>
+
+                            <button onClick={() => setPageNumber(_ => {
+                                // if (prev > 0) {
+                                //     return prev = prev - 1
+                                // }
+                                return Math.floor(tableContents.length / perPage)
+                            })}>
                                 <img src="/last.png" alt="" />
                             </button>
                         </div>
